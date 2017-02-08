@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:60:"F:\web\discuz\public/../application/admin\view\cate\lst.html";i:1486528910;s:63:"F:\web\discuz\public/../application/admin\view\public\base.html";i:1486528368;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:63:"F:\web\discuz\public/../application/admin\view\article\lst.html";i:1486562148;s:63:"F:\web\discuz\public/../application/admin\view\public\base.html";i:1486528368;}*/ ?>
 
 <!doctype html>
 <html>
@@ -67,8 +67,8 @@
     <div class="main-wrap">
 
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin">首页</a>
-             <span class="crumb-step">&gt;</span><span class="crumb-name">栏目管理</span>
+            <div class="crumb-list"><i class="icon-font"></i><a href="<?php echo url('index/index'); ?>">首页</a>
+                <span class="crumb-step">&gt;</span><span class="crumb-name">文章管理</span>
             </div>
         </div>
         <div class="search-wrap">
@@ -95,7 +95,7 @@
             <form name="myform" id="myform" method="post">
                 <div class="result-title">
                     <div class="result-list">
-                        <a href="<?php echo url('add'); ?>"><i class="icon-font"></i>新增栏目</a>
+                        <a href="<?php echo url('add'); ?>"><i class="icon-font"></i>新增文章</a>
                         <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
                         <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>
                     </div>
@@ -104,21 +104,29 @@
                     <table class="result-tab" width="100%">   
                         <tr>                           
                             <th width="60px">ID</th>
-                            <th>栏目名称</th>
-                            <th width="6%">栏目类型</th>
+                            <th>文章标题</th>
+                            <th>文章缩略图</th>
+                            <th>所属栏目</th>
+                            <th>点击量</th>
+                            <th>发布时间</th>
                             <th width="8%">操作</th>
                         </tr>
-                        <?php if(is_array($cateres) || $cateres instanceof \think\Collection || $cateres instanceof \think\Paginator): $i = 0; $__LIST__ = $cateres;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                        <?php if(is_array($article) || $article instanceof \think\Collection || $article instanceof \think\Paginator): $i = 0; $__LIST__ = $article;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                         <tr>                            
-                            <td>1</td>
-                            <td title="<?php echo $vo['catename']; ?>"><a target="_blank" href="#" title="<?php echo $vo['catename']; ?>"><?php echo $vo['catename']; ?></a> …
+                            <td><?php echo $vo['id']; ?></td>
+                            <td title="<?php echo $vo['title']; ?>"><a target="_blank" href="#" title="<?php echo $vo['title']; ?>"><?php echo $vo['title']; ?></a>
                             </td>
                             <td>
-                               <?php if($vo['type'] == 0): ?>列表栏目
-                               <?php else: ?>
-                                    留言板
+                                <?php if($vo['pic'] != ''): ?>
+                                <img height="50" src="<?php echo $vo['pic']; ?>">
+                                <?php else: ?>
+                                暂无缩略图
                                 <?php endif; ?>
-                            </td>                           
+                            </td>
+                            <td><?php echo $vo['catename']; ?></td>
+                            <td><?php echo $vo['click']; ?></td>
+                            <td><?php echo date("Y-m-d",$vo['time']); ?></td>
+                                                    
                             <td>
                                 <a class="link-update" href="<?php echo url('edit',array('id'=>$vo['id'])); ?>">修改</a>
                                 <a class="link-del" onclick="return confirm('你确定要删除该栏目吗？');" href="<?php echo url('del',array('id'=>$vo['id'])); ?>">删除</a>
@@ -126,7 +134,7 @@
                         </tr>
                        <?php endforeach; endif; else: echo "" ;endif; ?>
                     </table>
-                    <div class="list-page"> 2 条 1/1 页</div>
+                    <div class="list-page"> <?php echo $page; ?></div>
                 </div>
             </form>
         </div>

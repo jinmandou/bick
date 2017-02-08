@@ -3,8 +3,8 @@
     <div class="main-wrap">
 
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin">首页</a>
-             <span class="crumb-step">&gt;</span><span class="crumb-name">栏目管理</span>
+            <div class="crumb-list"><i class="icon-font"></i><a href="{:url('index/index')}">首页</a>
+                <span class="crumb-step">&gt;</span><span class="crumb-name">文章管理</span>
             </div>
         </div>
         <div class="search-wrap">
@@ -31,7 +31,7 @@
             <form name="myform" id="myform" method="post">
                 <div class="result-title">
                     <div class="result-list">
-                        <a href="{:url('add')}"><i class="icon-font"></i>新增栏目</a>
+                        <a href="{:url('add')}"><i class="icon-font"></i>新增文章</a>
                         <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
                         <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>
                     </div>
@@ -40,21 +40,29 @@
                     <table class="result-tab" width="100%">   
                         <tr>                           
                             <th width="60px">ID</th>
-                            <th>栏目名称</th>
-                            <th width="6%">栏目类型</th>
+                            <th>文章标题</th>
+                            <th>文章缩略图</th>
+                            <th>所属栏目</th>
+                            <th>点击量</th>
+                            <th>发布时间</th>
                             <th width="8%">操作</th>
                         </tr>
-                        {volist name="cateres" id="vo"}
+                        {volist name="article" id="vo"}
                         <tr>                            
                             <td>{$vo.id}</td>
-                            <td title="{$vo.catename}"><a target="_blank" href="#" title="{$vo.catename}">{$vo.catename}</a> …
+                            <td title="{$vo.title}"><a target="_blank" href="#" title="{$vo.title}">{$vo.title}</a>
                             </td>
                             <td>
-                               {if condition="$vo['type'] eq 0"}列表栏目
-                               {else /}
-                                    留言板
+                                {if condition="$vo['pic'] neq '' "}
+                                <img height="50" src="{$vo.pic}">
+                                {else /}
+                                暂无缩略图
                                 {/if}
-                            </td>                           
+                            </td>
+                            <td>{$vo.catename}</td>
+                            <td>{$vo.click}</td>
+                            <td>{$vo.time|date="Y-m-d",###}</td>
+                                                    
                             <td>
                                 <a class="link-update" href="{:url('edit',array('id'=>$vo.id))}">修改</a>
                                 <a class="link-del" onclick="return confirm('你确定要删除该栏目吗？');" href="{:url('del',array('id'=>$vo.id))}">删除</a>
@@ -62,7 +70,7 @@
                         </tr>
                        {/volist}
                     </table>
-                    <div class="list-page"> 2 条 1/1 页</div>
+                    <div class="list-page"> {$page}</div>
                 </div>
             </form>
         </div>

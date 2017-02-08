@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:60:"F:\web\discuz\public/../application/admin\view\cate\add.html";i:1486517049;s:63:"F:\web\discuz\public/../application/admin\view\public\base.html";i:1486482388;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:61:"F:\web\discuz\public/../application/admin\view\cate\edit.html";i:1486527528;s:63:"F:\web\discuz\public/../application/admin\view\public\base.html";i:1486482388;}*/ ?>
 
 <!doctype html>
 <html>
@@ -67,30 +67,31 @@
         <div class="main-wrap">
         <div class="crumb-wrap">
             <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span>
-                <a class="crumb-name" href="/jscss/admin/design/">栏目管理</a><span class="crumb-step">&gt;</span><span>新增栏目</span></div>
+                <a class="crumb-name" href="/jscss/admin/design/">栏目管理</a><span class="crumb-step">&gt;</span><span>修改栏目</span></div>
         </div>
         <div class="result-wrap">
             <div class="result-content">
-                <form action="<?php echo url('add'); ?>" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                <form action="" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                    <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
                     <table class="insert-tab" width="100%">
                         <tbody>
                             <tr>
                                 <th width='10%'><i class="require-red">*</i>栏目名称：</th>
                                 <td>
-                                    <input class="common-text required" id="catename" name="catename" size="50" value="" type="text">
+                                    <input class="common-text required" id="catename" name="catename" size="50" value="<?php echo $data['catename']; ?>" type="text">
                                 </td>
                             </tr>
                             <tr>
                                 <th>关键字</th>
-                                <td><input class="common-text" name="keyword" size="50"  type="text"></td>
+                                <td><input class="common-text" name="keyword" size="50"  type="text" value='<?php echo $data['keyword']; ?>'></td>
                             </tr>
-                             <tr>
+                              <tr>
                                 <th><i class="require-red">*</i>栏目类型：</th>
-                                <td><input name="type" value='1' type="checkbox">留言板</td>
+                                <td><input name="type" value="1" type="checkbox" <?php if($data['type'] == 1): ?>checked='checked'<?php endif; ?> /> 留言板</td>
                             </tr>
                             <tr>
                                 <th>内容：</th>
-                                <td><textarea name="desc" class="common-textarea"  cols="30" style="width: 98%;" rows="10"></textarea></td>
+                                <td><textarea name="desc" class="common-textarea"  cols="30" style="width: 98%;" rows="10"><?php echo $data['desc']; ?></textarea></td>
                             </tr>
                             <tr>
                                 <th></th>

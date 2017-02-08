@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:60:"F:\web\discuz\public/../application/admin\view\cate\add.html";i:1486517049;s:63:"F:\web\discuz\public/../application/admin\view\public\base.html";i:1486482388;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:63:"F:\web\discuz\public/../application/admin\view\article\add.html";i:1486556351;s:63:"F:\web\discuz\public/../application/admin\view\public\base.html";i:1486528368;}*/ ?>
 
 <!doctype html>
 <html>
@@ -42,7 +42,7 @@
                     <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
                     <ul class="sub-menu">
                         <li><a href="<?php echo url('cate/lst'); ?>"><i class="icon-font">&#xe008;</i>栏目管理</a></li>
-                        <li><a href="design.html"><i class="icon-font">&#xe005;</i>博文管理</a></li>
+                        <li><a href="<?php echo url('article/lst'); ?>"><i class="icon-font">&#xe005;</i>文章管理</a></li>
                         <li><a href="design.html"><i class="icon-font">&#xe006;</i>分类管理</a></li>
                         <li><a href="design.html"><i class="icon-font">&#xe004;</i>留言管理</a></li>
                         <li><a href="design.html"><i class="icon-font">&#xe012;</i>评论管理</a></li>
@@ -66,31 +66,45 @@
     
         <div class="main-wrap">
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span>
-                <a class="crumb-name" href="/jscss/admin/design/">栏目管理</a><span class="crumb-step">&gt;</span><span>新增栏目</span></div>
+            <div class="crumb-list"><i class="icon-font"></i><a href="<?php echo url('index/index'); ?>">首页</a><span class="crumb-step">&gt;</span>
+                <a class="crumb-name" href="<?php echo url('lst'); ?>">文章管理</a><span class="crumb-step">&gt;</span><span>新增文章</span></div>
         </div>
         <div class="result-wrap">
             <div class="result-content">
-                <form action="<?php echo url('add'); ?>" method="post" id="myform" name="myform" enctype="multipart/form-data">
+                <form action="" method="post" id="myform" name="myform" enctype="multipart/form-data">
                     <table class="insert-tab" width="100%">
                         <tbody>
                             <tr>
-                                <th width='10%'><i class="require-red">*</i>栏目名称：</th>
+                                <th width="10%"><i class="require-red">*</i>文章标题：</th>
                                 <td>
-                                    <input class="common-text required" id="catename" name="catename" size="50" value="" type="text">
+                                    <input class="common-text required" id="title" name="title" size="50" value="" type="text">
                                 </td>
                             </tr>
                             <tr>
-                                <th>关键字</th>
-                                <td><input class="common-text" name="keyword" size="50"  type="text"></td>
+                                <th>关键词：</th>
+                                <td><input class="common-text" name="keywords" size="50" value="" type="text"></td>
                             </tr>
-                             <tr>
-                                <th><i class="require-red">*</i>栏目类型：</th>
-                                <td><input name="type" value='1' type="checkbox">留言板</td>
+                            <tr>
+                                <th>描述：</th>
+                                <td><textarea name="desc" class="common-textarea" id="desc" cols="20" style="width: 50%;" rows="5"></textarea></td>
+                            </tr>
+                            <tr>
+                                <th>所属栏目：</th>
+                                <td>
+                                    <select name="cateid">
+                                        <?php if(is_array($cateres) || $cateres instanceof \think\Collection || $cateres instanceof \think\Paginator): $i = 0; $__LIST__ = $cateres;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                                            <option value="<?php echo $vo['id']; ?>"><?php echo $vo['catename']; ?></option>
+                                        <?php endforeach; endif; else: echo "" ;endif; ?>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>缩略图：</th>
+                                <td><input type="file" name="pic" /></td>
                             </tr>
                             <tr>
                                 <th>内容：</th>
-                                <td><textarea name="desc" class="common-textarea"  cols="30" style="width: 98%;" rows="10"></textarea></td>
+                                <td><textarea name="content" class="common-textarea" id="content" cols="30" style="width: 98%;" rows="10"></textarea></td>
                             </tr>
                             <tr>
                                 <th></th>
@@ -105,16 +119,16 @@
         </div>
 
     </div>
-<!--/*引用百度编辑器
+
 <script type="text/javascript" src="__PUBADMIN__/ueditor/ueditor.config.js"></script>
 <script type="text/javascript" src="__PUBADMIN__/ueditor/ueditor.all.min.js"></script>
 <script type="text/javascript" src="__PUBADMIN__/ueditor/lang/zh-cn/zh-cn.js"></script>
 <script type="text/javascript">
     //实例化编辑器
     //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-    UE.getEditor('content',{initialFrameWidth:'100%',initialFrameHeight:400,);
+    UE.getEditor('content',{initialFrameWidth:'100%',initialFrameHeight:400,});
 </script>
-   */ }-->
+ 
 
     <!--/main-->
 </div>
