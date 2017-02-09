@@ -10,6 +10,7 @@ class Admin extends Model
     }
     if($data['password']){
         $data['password']=md5($data['password']);
+		
     }
     $adminData=array();
     $adminData['name']=$data['name'];
@@ -25,9 +26,10 @@ class Admin extends Model
 
    }
 
+//     先按分页取出admin数据	
    public function getadmin(){
     return $this::paginate(5,false,[
-        'type'=>'boot',
+        'type'=>'bootstrap',
         'var_page' => 'page',
         ]);
    }

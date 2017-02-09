@@ -19,9 +19,9 @@ return [
     ],
 
     'view_replace_str'  =>  [
-    '__PUBLIC__'=>'/public/',
+    '__PUBLIC__'=>'/',
     '__ROOT__' => '/',
-    '__ADMIN__' => 'http://127.0.0.1/bick/public/static/admin',
+    '__ADMIN__' => '/static/admin',
     ],
 
     

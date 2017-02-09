@@ -1,9 +1,12 @@
 <?php
+/*
+用户组规则表,里面填写各种控制器方法
+*/
 namespace app\admin\model;
 use think\Model;
 class AuthRule extends Model
 {
-    
+    //查询展开用户组规则
 	public function authRuleTree(){
         $authRuleres=$this->order('sort desc')->select();
         return $this->sort($authRuleres);

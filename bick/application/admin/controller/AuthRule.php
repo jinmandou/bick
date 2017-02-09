@@ -24,6 +24,7 @@ class AuthRule extends Common
         if(request()->isPost()){
             $data=input('post.');
             $plevel=db('auth_rule')->where('id',$data['pid'])->field('level')->find();
+			//如果父级是0则菜单等级继续0，否者加1
             if($plevel){
                 $data['level']=$plevel['level']+1;
             }else{
@@ -37,7 +38,7 @@ class AuthRule extends Common
             }
             return;
         }
-        $authRule=new AuthRuleModel();
+        $authRule=new AuthRuleModel();		
         $authRuleRes=$authRule->authRuleTree();
         $this->assign('authRuleRes',$authRuleRes);
         return view();

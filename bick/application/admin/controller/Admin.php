@@ -1,6 +1,6 @@
 <?php
 namespace app\admin\controller;
-use app\admin\model\Admin as AdminModel;
+use app\admin\model\Admin as AdminModel;   //管理员模型
 use app\admin\controller\Common;
 class Admin extends Common
 {

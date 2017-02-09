@@ -24,7 +24,7 @@ class AuthGroup extends Common
             }
             return;
         }
-        $authRule=new \app\admin\model\AuthRule();
+        $authRule=new \app\admin\model\AuthRule();    //用户组规则表
         $authRuleRes=$authRule->authRuleTree();
         $this->assign('authRuleRes',$authRuleRes);
         return view();
