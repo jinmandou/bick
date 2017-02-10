@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:61:"F:\web\discuz\public/../application/admin\view\cate\edit.html";i:1486617193;s:63:"F:\web\discuz\public/../application/admin\view\public\base.html";i:1486738906;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:61:"F:\web\discuz\public/../application/admin\view\link\edit.html";i:1486628104;s:63:"F:\web\discuz\public/../application/admin\view\public\base.html";i:1486728750;}*/ ?>
 
 <!doctype html>
 <html>
@@ -8,12 +8,6 @@
     <link rel="stylesheet" type="text/css" href="__PUBADMIN__/css/common.css"/>
     <link rel="stylesheet" type="text/css" href="__PUBADMIN__/css/main.css"/>
     <script type="text/javascript" src="__PUBADMIN__/js/libs/modernizr.min.js"></script>
-    
-    <link rel="stylesheet" type="text/css" href="__PUBADMIN__/js/dialog/skin/default/layer.css"/>
-    <script type="text/javascript" src="__PUBADMIN__/js/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="__PUBADMIN__/js/jquery.form.js"></script>
-    <script type="text/javascript" src="__PUBADMIN__/js/dialog/layer.js"></script>
-    <script type="text/javascript" src="__PUBADMIN__/js/dialog.js"></script>
 </head>
 <body>
 
@@ -73,7 +67,7 @@
         <div class="main-wrap">
         <div class="crumb-wrap">
             <div class="crumb-list"><i class="icon-font"></i><a href="<?php echo url('index/index'); ?>">首页</a><span class="crumb-step">&gt;</span>
-                <a class="crumb-name" href="<?php echo url('lst'); ?>" >栏目管理</a><span class="crumb-step">&gt;</span><span>修改栏目</span></div>
+                <a class="crumb-name" href="<?php echo url('lst'); ?>">链接管理</a><span class="crumb-step">&gt;</span><span>新增链接</span></div>
         </div>
         <div class="result-wrap">
             <div class="result-content">
@@ -82,22 +76,18 @@
                     <table class="insert-tab" width="100%">
                         <tbody>
                             <tr>
-                                <th width='10%'><i class="require-red">*</i>栏目名称：</th>
+                                <th width="10%"><i class="require-red">*</i>链接标题：</th>
                                 <td>
-                                    <input class="common-text required" id="catename" name="catename" size="50" value="<?php echo $data['catename']; ?>" type="text">
+                                    <input class="common-text required" id="title" name="title" size="50" value="<?php echo $data['title']; ?>" type="text">
                                 </td>
                             </tr>
                             <tr>
-                                <th>关键字</th>
-                                <td><input class="common-text" name="keyword" size="50"  type="text" value='<?php echo $data['keyword']; ?>'></td>
-                            </tr>
-                              <tr>
-                                <th><i class="require-red">*</i>栏目类型：</th>
-                                <td><input name="type" value="1" type="checkbox" <?php if($data['type'] == 1): ?>checked='checked'<?php endif; ?> /> 留言板</td>
+                                <th>链接地址：</th>
+                                <td><input class="common-text" name="url" size="50" value="<?php echo $data['url']; ?>" type="text"></td>
                             </tr>
                             <tr>
                                 <th>内容：</th>
-                                <td><textarea name="desc" class="common-textarea"  cols="30" style="width: 98%;" rows="10"><?php echo $data['desc']; ?></textarea></td>
+                                <td><textarea name="desc" class="common-textarea" id="desc" cols="30" style="width: 98%;" rows="10"><?php echo $data['desc']; ?></textarea></td>
                             </tr>
                             <tr>
                                 <th></th>
@@ -112,20 +102,16 @@
         </div>
 
     </div>
-<!--/*引用百度编辑器
-<script type="text/javascript" src="__PUBADMIN__/ueditor/ueditor.config.js"></script>
-<script type="text/javascript" src="__PUBADMIN__/ueditor/ueditor.all.min.js"></script>
-<script type="text/javascript" src="__PUBADMIN__/ueditor/lang/zh-cn/zh-cn.js"></script>
-<script type="text/javascript">
-    //实例化编辑器
-    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-    UE.getEditor('content',{initialFrameWidth:'100%',initialFrameHeight:400,);
-</script>
-   */ }-->
+
 
     <!--/main-->
 </div>
 
- 
+ <link rel="stylesheet" type="text/css" href="__PUBADMIN__/js/dialog/skin/default/layer.css"/>
+ <script type="text/javascript" src="__PUBADMIN__/js/jquery-1.11.3.min.js"></script>
+ <script type="text/javascript" src="__PUBADMIN__/js/jquery.form.js"></script>
+ <script type="text/javascript" src="__PUBADMIN__/js/dialog/layer.js"></script>
+ <script type="text/javascript" src="__PUBADMIN__/js/dialog.js"></script>
+ <script type="text/javascript" src="__PUBADMIN__/js/index.js"></script>
 </body>
 </html>

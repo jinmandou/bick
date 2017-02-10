@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:60:"F:\web\discuz\public/../application/admin\view\cate\lst.html";i:1486528910;s:63:"F:\web\discuz\public/../application/admin\view\public\base.html";i:1486528368;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:60:"F:\web\discuz\public/../application/admin\view\cate\lst.html";i:1486629222;s:63:"F:\web\discuz\public/../application/admin\view\public\base.html";i:1486738906;}*/ ?>
 
 <!doctype html>
 <html>
@@ -8,6 +8,12 @@
     <link rel="stylesheet" type="text/css" href="__PUBADMIN__/css/common.css"/>
     <link rel="stylesheet" type="text/css" href="__PUBADMIN__/css/main.css"/>
     <script type="text/javascript" src="__PUBADMIN__/js/libs/modernizr.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="__PUBADMIN__/js/dialog/skin/default/layer.css"/>
+    <script type="text/javascript" src="__PUBADMIN__/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="__PUBADMIN__/js/jquery.form.js"></script>
+    <script type="text/javascript" src="__PUBADMIN__/js/dialog/layer.js"></script>
+    <script type="text/javascript" src="__PUBADMIN__/js/dialog.js"></script>
 </head>
 <body>
 
@@ -43,10 +49,10 @@
                     <ul class="sub-menu">
                         <li><a href="<?php echo url('cate/lst'); ?>"><i class="icon-font">&#xe008;</i>栏目管理</a></li>
                         <li><a href="<?php echo url('article/lst'); ?>"><i class="icon-font">&#xe005;</i>文章管理</a></li>
+                        <li><a href="<?php echo url('link/lst'); ?>"><i class="icon-font">&#xe052;</i>友情链接</a></li>
                         <li><a href="design.html"><i class="icon-font">&#xe006;</i>分类管理</a></li>
                         <li><a href="design.html"><i class="icon-font">&#xe004;</i>留言管理</a></li>
                         <li><a href="design.html"><i class="icon-font">&#xe012;</i>评论管理</a></li>
-                        <li><a href="design.html"><i class="icon-font">&#xe052;</i>友情链接</a></li>
                         <li><a href="design.html"><i class="icon-font">&#xe033;</i>广告管理</a></li>
                     </ul>
                 </li>
@@ -110,8 +116,8 @@
                         </tr>
                         <?php if(is_array($cateres) || $cateres instanceof \think\Collection || $cateres instanceof \think\Paginator): $i = 0; $__LIST__ = $cateres;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
                         <tr>                            
-                            <td>1</td>
-                            <td title="<?php echo $vo['catename']; ?>"><a target="_blank" href="#" title="<?php echo $vo['catename']; ?>"><?php echo $vo['catename']; ?></a> …
+                            <td><?php echo $vo['id']; ?></td>
+                            <td title="<?php echo $vo['catename']; ?>"><a target="_blank" href="#" title="<?php echo $vo['catename']; ?>"><?php echo $vo['catename']; ?></a>
                             </td>
                             <td>
                                <?php if($vo['type'] == 0): ?>列表栏目
@@ -121,12 +127,14 @@
                             </td>                           
                             <td>
                                 <a class="link-update" href="<?php echo url('edit',array('id'=>$vo['id'])); ?>">修改</a>
-                                <a class="link-del" onclick="return confirm('你确定要删除该栏目吗？');" href="<?php echo url('del',array('id'=>$vo['id'])); ?>">删除</a>
+                               <a class="link-del" onclick="javascript:
+                                             dialog.confirm( '你确定要删除该文章吗？','<?php echo url('del',array('id'=>$vo['id'])); ?>');return false;" href="#" >删除
+                                 </a>
                             </td>
                         </tr>
                        <?php endforeach; endif; else: echo "" ;endif; ?>
                     </table>
-                    <div class="list-page"> 2 条 1/1 页</div>
+                    <div class="list-page"> <?php echo $page; ?></div>
                 </div>
             </form>
         </div>
@@ -134,5 +142,7 @@
 
     <!--/main-->
 </div>
+
+ 
 </body>
 </html>

@@ -11,7 +11,8 @@ class Cate extends Controller
      //栏目列表
     public function lst()
     {
-        $cateres = \think\Db::name('cate') ->select();
+        $cateres = \think\Db::name('cate') ->paginate(10);
+        $this ->assign('page',$cateres ->render());  //分页
         $this->assign('cateres',$cateres);
         return $this->fetch();
      }
@@ -74,7 +75,6 @@ class Cate extends Controller
                 // 验证失败 输出错误信息
                 return ($result);
             }
-            
             //sql添加及验证
             $db = \think\Db::name('cate')->update($data);
             if($db){

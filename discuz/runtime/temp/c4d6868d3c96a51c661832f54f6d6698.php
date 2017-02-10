@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"F:\web\discuz\public/../application/admin\view\article\edit.html";i:1486565508;s:63:"F:\web\discuz\public/../application/admin\view\public\base.html";i:1486528368;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"F:\web\discuz\public/../application/admin\view\article\edit.html";i:1486619371;s:63:"F:\web\discuz\public/../application/admin\view\public\base.html";i:1486616123;}*/ ?>
 
 <!doctype html>
 <html>
@@ -112,8 +112,8 @@
                             </tr>
                             <tr>
                                 <th>内容：</th>
-                                <td><textarea name="content" class="common-textarea" id="content" cols="30" style="width: 98%;" rows="10">
-                                    <?php echo htmlspecialchars_decode($arts['content']);?>
+                                <td><textarea  name="content" class="common-textarea" id="content" cols="30" style="width: 98%;" rows="10">
+                                    <?php echo $arts['content']; ?>
                                     
                                 </textarea></td>
                             </tr>
@@ -143,5 +143,10 @@
 
     <!--/main-->
 </div>
+
+ <link rel="stylesheet" type="text/css" href="__PUBADMIN__/js/dialog/skin/default/layer.css"/>
+ <script type="text/javascript" src="__PUBADMIN__/js/jquery-1.11.3.min.js"></script>
+ <script type="text/javascript" src="__PUBADMIN__/js/dialog/layer.js"></script>
+ <script type="text/javascript" src="__PUBADMIN__/js/dialog.js"></script>
 </body>
 </html>

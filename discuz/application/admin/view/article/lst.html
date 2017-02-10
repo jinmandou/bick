@@ -65,7 +65,9 @@
                                                     
                             <td>
                                 <a class="link-update" href="{:url('edit',array('id'=>$vo.id))}">修改</a>
-                                <a class="link-del" onclick="return confirm('你确定要删除该栏目吗？');" href="{:url('del',array('id'=>$vo.id))}">删除</a>
+                                <a class="link-del" onclick="javascript:
+                                             dialog.confirm( '你确定要删除该文章吗？','{:url('del',array('id'=>$vo.id))}');return false;" href="#" >删除
+                                 </a>
                             </td>
                         </tr>
                        {/volist}
@@ -75,4 +77,5 @@
             </form>
         </div>
     </div>
+
 {/block}

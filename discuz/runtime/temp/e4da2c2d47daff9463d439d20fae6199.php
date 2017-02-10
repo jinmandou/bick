@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:61:"F:\web\discuz\public/../application/admin\view\cate\edit.html";i:1486617193;s:63:"F:\web\discuz\public/../application/admin\view\public\base.html";i:1486738906;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:60:"F:\web\discuz\public/../application/admin\view\link\lst.html";i:1486738790;s:63:"F:\web\discuz\public/../application/admin\view\public\base.html";i:1486738906;}*/ ?>
 
 <!doctype html>
 <html>
@@ -70,58 +70,56 @@
     </div>
     
     
-        <div class="main-wrap">
+    <div class="main-wrap">
+
         <div class="crumb-wrap">
-            <div class="crumb-list"><i class="icon-font"></i><a href="<?php echo url('index/index'); ?>">首页</a><span class="crumb-step">&gt;</span>
-                <a class="crumb-name" href="<?php echo url('lst'); ?>" >栏目管理</a><span class="crumb-step">&gt;</span><span>修改栏目</span></div>
-        </div>
-        <div class="result-wrap">
-            <div class="result-content">
-                <form action="" method="post" id="myform" name="myform" enctype="multipart/form-data">
-                    <input type="hidden" name="id" value="<?php echo $data['id']; ?>">
-                    <table class="insert-tab" width="100%">
-                        <tbody>
-                            <tr>
-                                <th width='10%'><i class="require-red">*</i>栏目名称：</th>
-                                <td>
-                                    <input class="common-text required" id="catename" name="catename" size="50" value="<?php echo $data['catename']; ?>" type="text">
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>关键字</th>
-                                <td><input class="common-text" name="keyword" size="50"  type="text" value='<?php echo $data['keyword']; ?>'></td>
-                            </tr>
-                              <tr>
-                                <th><i class="require-red">*</i>栏目类型：</th>
-                                <td><input name="type" value="1" type="checkbox" <?php if($data['type'] == 1): ?>checked='checked'<?php endif; ?> /> 留言板</td>
-                            </tr>
-                            <tr>
-                                <th>内容：</th>
-                                <td><textarea name="desc" class="common-textarea"  cols="30" style="width: 98%;" rows="10"><?php echo $data['desc']; ?></textarea></td>
-                            </tr>
-                            <tr>
-                                <th></th>
-                                <td>
-                                    <input class="btn btn-primary btn6 mr10" value="提交" type="submit">
-                                    <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
-                                </td>
-                            </tr>
-                        </tbody></table>
-                </form>
+            <div class="crumb-list"><i class="icon-font"></i><a href="<?php echo url('index/index'); ?>">首页</a>
+             <span class="crumb-step">&gt;</span><span class="crumb-name">链接管理</span>
             </div>
         </div>
-
+        
+        <div class="result-wrap">
+            <form name="myform" id="myform" method="post">
+                <div class="result-title">
+                    <div class="result-list">
+                        <a href="<?php echo url('add'); ?>"><i class="icon-font"></i>新增链接</a>
+                        <a id="batchDel" href="javascript:void(0)"><i class="icon-font"></i>批量删除</a>
+                        <a id="updateOrd" href="javascript:void(0)"><i class="icon-font"></i>更新排序</a>
+                    </div>
+                </div>
+                <div class="result-content">
+                    <table class="result-tab" width="100%">   
+                        <tr>                           
+                            <th width="60px">ID</th>
+                            <th>链接标题</th>
+                            <th >链接描述</th>
+                            <th >链接地址</th>
+                            <th width="8%">操作</th>
+                        </tr>
+                        <?php if(is_array($cateres) || $cateres instanceof \think\Collection || $cateres instanceof \think\Paginator): $i = 0; $__LIST__ = $cateres;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                        <tr>                            
+                            <td><?php echo $vo['id']; ?></td>
+                            <td><?php echo $vo['title']; ?></td> 
+                            <td><?php echo $vo['desc']; ?></td> 
+                            <td title="<?php echo $vo['url']; ?>"><a target="_blank" href="<?php echo $vo['url']; ?>"><?php echo $vo['url']; ?></a></td>          
+                            <td>
+                                <a class="link-update" href="<?php echo url('edit',array('id'=>$vo['id'])); ?>">修改</a>
+                                <a class="link-del" onclick="javascript:
+                                             dialog.funconfirm( '你确定要删除该文章吗？','<?php echo url('del',array('id'=>$vo['id'])); ?>');return false;" href="#" >删除
+                                 </a>
+                            </td>
+                        </tr>
+                       <?php endforeach; endif; else: echo "" ;endif; ?>
+                    </table>
+                     <div class="list-page"> <?php echo $page; ?></div>
+                    
+                </div>
+            </form>
+        </div>
     </div>
-<!--/*引用百度编辑器
-<script type="text/javascript" src="__PUBADMIN__/ueditor/ueditor.config.js"></script>
-<script type="text/javascript" src="__PUBADMIN__/ueditor/ueditor.all.min.js"></script>
-<script type="text/javascript" src="__PUBADMIN__/ueditor/lang/zh-cn/zh-cn.js"></script>
-<script type="text/javascript">
-    //实例化编辑器
-    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
-    UE.getEditor('content',{initialFrameWidth:'100%',initialFrameHeight:400,);
-</script>
-   */ }-->
+
+
+<script type="text/javascript" src="__PUBADMIN__/js/index.js"></script>
 
     <!--/main-->
 </div>

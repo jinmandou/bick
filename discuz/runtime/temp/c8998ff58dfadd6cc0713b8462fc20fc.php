@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:63:"F:\web\discuz\public/../application/admin\view\index\index.html";i:1486481837;s:63:"F:\web\discuz\public/../application/admin\view\public\base.html";i:1486528368;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:63:"F:\web\discuz\public/../application/admin\view\index\index.html";i:1486481837;s:63:"F:\web\discuz\public/../application/admin\view\public\base.html";i:1486728750;}*/ ?>
 
 <!doctype html>
 <html>
@@ -43,10 +43,10 @@
                     <ul class="sub-menu">
                         <li><a href="<?php echo url('cate/lst'); ?>"><i class="icon-font">&#xe008;</i>栏目管理</a></li>
                         <li><a href="<?php echo url('article/lst'); ?>"><i class="icon-font">&#xe005;</i>文章管理</a></li>
+                        <li><a href="<?php echo url('link/lst'); ?>"><i class="icon-font">&#xe052;</i>友情链接</a></li>
                         <li><a href="design.html"><i class="icon-font">&#xe006;</i>分类管理</a></li>
                         <li><a href="design.html"><i class="icon-font">&#xe004;</i>留言管理</a></li>
                         <li><a href="design.html"><i class="icon-font">&#xe012;</i>评论管理</a></li>
-                        <li><a href="design.html"><i class="icon-font">&#xe052;</i>友情链接</a></li>
                         <li><a href="design.html"><i class="icon-font">&#xe033;</i>广告管理</a></li>
                     </ul>
                 </li>
@@ -114,5 +114,12 @@
   
     <!--/main-->
 </div>
+
+ <link rel="stylesheet" type="text/css" href="__PUBADMIN__/js/dialog/skin/default/layer.css"/>
+ <script type="text/javascript" src="__PUBADMIN__/js/jquery-1.11.3.min.js"></script>
+ <script type="text/javascript" src="__PUBADMIN__/js/jquery.form.js"></script>
+ <script type="text/javascript" src="__PUBADMIN__/js/dialog/layer.js"></script>
+ <script type="text/javascript" src="__PUBADMIN__/js/dialog.js"></script>
+ <script type="text/javascript" src="__PUBADMIN__/js/index.js"></script>
 </body>
 </html>

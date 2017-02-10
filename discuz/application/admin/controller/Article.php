@@ -27,7 +27,7 @@ class Article extends Controller
             'title' => input('title'),
             'keywords'  => input('keywords'),
             'desc' => input('desc'),
-            'content' => input('content'),
+            'content' => htmlspecialchars(input('content')),
             'cateid' => input('cateid'),
             'click' => input('click')?input('click'):0,   //三元运算，没数据过来则为0
             'time' => time(),
@@ -64,10 +64,10 @@ class Article extends Controller
      //删除
      public function del(){
         $id = input('id');
-    	if(db('link')->delete($id)){
-    		return $this->success('删除栏目成功！','lst');
+    	if(db('article')->delete($id)){
+    		return $this->success('删除文章成功！','lst');
     	}else{
-    		return $this->error('删除栏目失败！');
+    		return $this->error('删除文章失败！');
     	}    
      }
      
@@ -79,7 +79,7 @@ class Article extends Controller
             'title' => input('title'),
             'keywords'  => input('keywords'),
             'desc' => input('desc'),
-            'content' => input('content'),
+            'content'  => htmlspecialchars(input('content')),
             'cateid' => input('cateid'),
             'click' => input('click')?input('click'):0,   //三元运算，没数据过来则为0
             'time' => time(),
@@ -100,10 +100,11 @@ class Article extends Controller
             
             //sql添加及验证
             $db = \think\Db::name('article')->update($data);
+         
             if($db){
-                return $this->success("修改文章成功！","lst");
+               return $this->success("修改文章成功！","lst");
             }else{
-                return $this->success("修改文章失败！");
+               return $this->success("修改文章失败！");
             }
             
         }
