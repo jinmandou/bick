@@ -1,9 +1,9 @@
 <?php
 namespace app\admin\controller;
-use think\Controller;
+use app\admin\controller\Base;
 use app\admin\validate;
 
-class Article extends Controller
+class Article extends Base
 {
     public function index()
     {
@@ -27,7 +27,7 @@ class Article extends Controller
             'title' => input('title'),
             'keywords'  => input('keywords'),
             'desc' => input('desc'),
-            'content' => htmlspecialchars(input('content')),
+            'content' => input('content'),
             'cateid' => input('cateid'),
             'click' => input('click')?input('click'):0,   //三元运算，没数据过来则为0
             'time' => time(),
@@ -38,13 +38,13 @@ class Article extends Controller
                if($pic['info']== 1){ 
                    $data['pic'] = '/uploads/'.$pic['savename'];
                }  else {
-                   return $pic['err'];
+                   return $this->error($pic['err']);
                }
            }  
             $result = $this->validate($data,'Article');  //验证库去验证
             if(true !== $result){
                 // 验证失败 输出错误信息
-                return ($result);
+                return $this->error($result);
             }
             
             
@@ -53,7 +53,7 @@ class Article extends Controller
             if($db){
                 return $this->success("添加文章成功！","lst");
             }else{
-                return $this->success("添加文章失败！");
+                return $this->error("添加文章失败！");
             }
             
         }
@@ -79,7 +79,7 @@ class Article extends Controller
             'title' => input('title'),
             'keywords'  => input('keywords'),
             'desc' => input('desc'),
-            'content'  => htmlspecialchars(input('content')),
+            'content'  => input('content'),
             'cateid' => input('cateid'),
             'click' => input('click')?input('click'):0,   //三元运算，没数据过来则为0
             'time' => time(),
@@ -90,12 +90,12 @@ class Article extends Controller
                if($pic['info']== 1){ 
                    $data['pic'] = '/uploads/'.$pic['savename'];
                }  else {
-                   return $pic['err'];
+                   return $this->error($pic['err']);
                }
            }  
            $validate = validate('Article');   //使用助手函数实例化验证器
             if(!$validate->scene('edit')->check($data)){
-                return $validate->getError();
+                return $this->error($validate->getError());
             }
             
             //sql添加及验证
@@ -104,7 +104,7 @@ class Article extends Controller
             if($db){
                return $this->success("修改文章成功！","lst");
             }else{
-               return $this->success("修改文章失败！");
+               return $this->error("修改文章失败！");
             }
             
         }

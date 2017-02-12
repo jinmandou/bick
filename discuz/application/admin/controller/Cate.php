@@ -1,8 +1,8 @@
 <?php
 namespace app\admin\controller;
-use think\Controller;
+use app\admin\controller\Base;
 //use app\admin\validate;   //引入验证库
-class Cate extends Controller
+class Cate extends Base
 {
     public function index()
     {

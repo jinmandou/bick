@@ -9,7 +9,7 @@ class Login extends Model
     	$admin= \think\Db::name('admin')->where('username','=',$username)->find();
     	if($admin){
     		if($admin['password']==md5($password)){
-    			\think\Session::set('id',$admin['id']);
+    			\think\Session::set('id',$admin['id']);       //写入session
     			\think\Session::set('username',$admin['username']);
     			return 1;
     		}else{

@@ -136,6 +136,7 @@ return [
         'taglib_begin' => '{',
         // 标签库标签结束标记
         'taglib_end'   => '}',
+    
     ],
 
     // 视图输出字符串内容替换
@@ -144,8 +145,8 @@ return [
         '__PUBADMIN__' =>  '/static/admin',
     ],
     // 默认跳转页面对应的模板文件
-    'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
-    'dispatch_error_tmpl'    => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
+    'dispatch_success_tmpl'  => 'Jump/index',
+    'dispatch_error_tmpl'    => 'Jump/index',
 
     // +----------------------------------------------------------------------
     // | 异常及错误设置

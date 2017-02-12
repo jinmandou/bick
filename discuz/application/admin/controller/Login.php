@@ -9,13 +9,16 @@ class Login extends Controller
         if(request()->isPost()){
             $login = new Log;
             $status=$login->login(input('username'),input('password'));
+            $ret["status"] = $status;
             if($status==1){
-                return $this->success('登录成功，正在跳转！','Index/index');
+                $ret["url"] = url("index/index"); 
+                $ret["message"] = "登录成功，正在跳转";
             }elseif($status==2){
-                return $this->error('账号或者密码错误!');
+                $ret["message"] = '账号或者密码错误!';
             }else{
-                 return $this->error('用户不存在!');
+                $ret["message"] = '用户不存在!';
             }
+            return json($ret);  
         }
         return $this->fetch('login');
     }

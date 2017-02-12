@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:63:"F:\web\discuz\public/../application/index\view\index\index.html";i:1486515942;s:63:"F:\web\discuz\public/../application/index\view\public\base.html";i:1486479505;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:63:"F:\web\discuz\public/../application/index\view\index_index.html";i:1486515942;s:63:"F:\web\discuz\public/../application/index\view\public_base.html";i:1486897932;}*/ ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
@@ -13,6 +13,7 @@
 	<script src="__PUBINDEX__/style/common.js" type="text/javascript"></script>
 	<script src="__PUBINDEX__/style/c_html_js_add.js" type="text/javascript"></script>
 	<script src="__PUBINDEX__/style/custom.js" type="text/javascript"></script>
+        
 </head>
 <body class="multi catalog">
 <div id="divAll">
@@ -25,7 +26,13 @@
 		</div>
 		<div id="divNavBar">
                     <ul>
-                    <li><a href="http://www.youmew.com/">首页</a></li><li><a href="http://www.youmew.com/catalog.asp?cate=2" title="感悟生活点滴">大生活</a></li><li><a href="http://www.youmew.com/catalog.asp?cate=3" title="光与影的艺术">光影斑斓</a></li><li><a href="http://www.youmew.com/catalog.asp?cate=4" title="一切有为法，如梦幻泡影，如露亦如电，应作如是观。">如是观</a></li><li><a href="http://www.youmew.com/t/" target="_blank" title="还是以前的圈圈微博！">圈圈说</a></li><li><a href="http://www.youmew.com/guestbook.html" title="沟通从这里开始">留言本</a></li>
+                    <?php if(is_array($nav) || $nav instanceof \think\Collection || $nav instanceof \think\Paginator): $i = 0; $__LIST__ = $nav;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                    <li><a href="
+                        <?php if($vo['type'] == 0): ?>
+                        <?php echo url('lst/index',array('cateid'=>$vo['id'])); else: ?>
+                        <?php echo url('guest/index',array('cateid'=>$vo['id'])); endif; ?>
+                        "><?php echo $vo['catename']; ?></a></li>
+                    <?php endforeach; endif; else: echo "" ;endif; ?>
                     </ul>
 		</div>
             

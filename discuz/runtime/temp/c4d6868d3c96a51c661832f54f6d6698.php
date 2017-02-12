@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"F:\web\discuz\public/../application/admin\view\article\edit.html";i:1486619371;s:63:"F:\web\discuz\public/../application/admin\view\public\base.html";i:1486616123;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"F:\web\discuz\public/../application/admin\view\article\edit.html";i:1486904806;s:63:"F:\web\discuz\public/../application/admin\view\public\base.html";i:1486796079;}*/ ?>
 
 <!doctype html>
 <html>
@@ -8,23 +8,29 @@
     <link rel="stylesheet" type="text/css" href="__PUBADMIN__/css/common.css"/>
     <link rel="stylesheet" type="text/css" href="__PUBADMIN__/css/main.css"/>
     <script type="text/javascript" src="__PUBADMIN__/js/libs/modernizr.min.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="__PUBADMIN__/js/dialog/skin/default/layer.css"/>
+    <script type="text/javascript" src="__PUBADMIN__/js/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="__PUBADMIN__/js/jquery.form.js"></script>
+    <script type="text/javascript" src="__PUBADMIN__/js/dialog/layer.js"></script>
+    <script type="text/javascript" src="__PUBADMIN__/js/dialog.js"></script>
 </head>
 <body>
 
     <div class="topbar-wrap white">
         <div class="topbar-inner clearfix">
             <div class="topbar-logo-wrap clearfix">
-                <h1 class="topbar-logo none"><a href="index.html" class="navbar-brand">后台管理</a></h1>
+                <h1 class="topbar-logo none"><a href="<?php echo url('admin/index'); ?>" class="navbar-brand">后台管理</a></h1>
                 <ul class="navbar-list clearfix">
-                    <li><a class="on" href="index.html">首页</a></li>
-                    <li><a href="#" target="_blank">网站首页</a></li>
+                    <li><a class="on" href="<?php echo url('index/index'); ?>">首页</a></li>
+                    <li><a href="<?php echo url('index/index/index'); ?>"  target="_blank">网站首页</a></li>
                 </ul>
             </div>
             <div class="top-info-wrap">
                 <ul class="top-info-list clearfix">
-                    <li><a href="http://www.jscss.me">管理员</a></li>
-                    <li><a href="http://www.jscss.me">修改密码</a></li>
-                    <li><a href="http://www.jscss.me">退出</a></li>
+                    <li><a href="#">管理员-<?php echo session('username') ?></a></li>
+                    <li><a href="<?php echo url('admin/edit',array('id'=>session('id'))); ?>">修改密码</a></li>
+                    <li><a href="<?php echo url('login/logout'); ?>">退出</a></li>
                 </ul>
             </div>
         </div>
@@ -43,16 +49,16 @@
                     <ul class="sub-menu">
                         <li><a href="<?php echo url('cate/lst'); ?>"><i class="icon-font">&#xe008;</i>栏目管理</a></li>
                         <li><a href="<?php echo url('article/lst'); ?>"><i class="icon-font">&#xe005;</i>文章管理</a></li>
-                        <li><a href="design.html"><i class="icon-font">&#xe006;</i>分类管理</a></li>
+                        <li><a href="<?php echo url('link/lst'); ?>"><i class="icon-font">&#xe052;</i>友情链接</a></li>
                         <li><a href="design.html"><i class="icon-font">&#xe004;</i>留言管理</a></li>
                         <li><a href="design.html"><i class="icon-font">&#xe012;</i>评论管理</a></li>
-                        <li><a href="design.html"><i class="icon-font">&#xe052;</i>友情链接</a></li>
                         <li><a href="design.html"><i class="icon-font">&#xe033;</i>广告管理</a></li>
                     </ul>
                 </li>
                 <li>
                     <a href="#"><i class="icon-font">&#xe018;</i>系统管理</a>
                     <ul class="sub-menu">
+                        <li><a href="<?php echo url('admin/lst'); ?>"><i class="icon-font">&#xe006;</i>管理员管理</a></li>
                         <li><a href="system.html"><i class="icon-font">&#xe017;</i>系统设置</a></li>
                         <li><a href="system.html"><i class="icon-font">&#xe037;</i>清理缓存</a></li>
                         <li><a href="system.html"><i class="icon-font">&#xe046;</i>数据备份</a></li>
@@ -106,14 +112,14 @@
                                 <?php if($arts['pic'] == ''): ?>
                                 暂无缩略图
                                 <?php else: ?>
-                                <img src="__PUBLIC__/<?php echo $arts['pic']; ?>" height="50">
+                                <img src="<?php echo $arts['pic']; ?>" height="50">
                                 <?php endif; ?>
                                 </td>
                             </tr>
                             <tr>
                                 <th>内容：</th>
                                 <td><textarea  name="content" class="common-textarea" id="content" cols="30" style="width: 98%;" rows="10">
-                                    <?php echo $arts['content']; ?>
+                                    <?php echo htmlspecialchars_decode($arts['content']); ?>
                                     
                                 </textarea></td>
                             </tr>
@@ -144,9 +150,6 @@
     <!--/main-->
 </div>
 
- <link rel="stylesheet" type="text/css" href="__PUBADMIN__/js/dialog/skin/default/layer.css"/>
- <script type="text/javascript" src="__PUBADMIN__/js/jquery-1.11.3.min.js"></script>
- <script type="text/javascript" src="__PUBADMIN__/js/dialog/layer.js"></script>
- <script type="text/javascript" src="__PUBADMIN__/js/dialog.js"></script>
+ 
 </body>
 </html>

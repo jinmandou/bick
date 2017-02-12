@@ -1,8 +1,8 @@
 <?php
 namespace app\admin\controller;
-use think\Controller;
+use app\admin\controller\Base;
 use app\admin\validate;   //引入验证库
-class Link extends Controller
+class Link extends Base
 {
     public function index()
     {
@@ -31,7 +31,7 @@ class Link extends Controller
                 // 验证失败 输出错误信息
                 $ret["message"]= $result;
                 $ret["status"] = 0;   //这个值决定成功失败，不为1则失败
-                return $ret;
+                return json($ret);
             }         
             //sql添加及验证
             $db = \think\Db::name('link')->insert($data);
@@ -43,7 +43,7 @@ class Link extends Controller
                 $ret["message"]= "添加栏目失败！";
                 $ret["status"] = 1; 
             }
-          return $ret;
+          return json($ret);
         }
         return $this->fetch();
      }
@@ -60,7 +60,7 @@ class Link extends Controller
                 $ret["message"]= "删除栏目失败！";
                 $ret["status"] = 0;   
             }
-            return $ret;
+            return json($ret);
         }
      }
      
@@ -77,7 +77,7 @@ class Link extends Controller
                 if(!$validate->scene('edit')->check($data)){
                     $ret["message"]= $validate->getError();
                     $ret["status"] = 0;   //这个值决定成功失败，不为1则失败
-                    return $ret;
+                    return json($ret);
                 }
                 //sql添加及验证
                 $db = \think\Db::name('link')->update($data);      //$db=0时表示没有任何修改
@@ -89,7 +89,7 @@ class Link extends Controller
                     $ret["message"]= "修改栏目失败！";
                     $ret["status"] = 1; 
                 }
-             return $ret;
+             return json($ret);
             }
         $id = input('id');
     	$data = db('link')->where('id',$id)->find();
