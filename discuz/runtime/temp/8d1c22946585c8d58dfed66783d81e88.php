@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:60:"F:\web\discuz\public/../application/index\view\tags_lst.html";i:1486906421;s:63:"F:\web\discuz\public/../application/index\view\public_base.html";i:1486897932;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:60:"F:\web\discuz\public/../application/index\view\tags_lst.html";i:1486980553;s:63:"F:\web\discuz\public/../application/index\view\public_base.html";i:1486897932;}*/ ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
@@ -50,19 +50,15 @@
 			 <?php endif; ?>
                         <h5 class="post-tags">Tags: <span class="tags">
                                 <?php
-                                       $arr  = explode(',', $vo['keywords']);
-                                       
+                                       $arr  = explode(',', $vo['keywords']);    
                                         foreach ($arr as $k => $v) {
-                                                 $urls = url('index\tags',array('index'=>$v));
+                                                $urls = url('index\tags',array('index/tags'=>$v));
                                                 echo "<a href='$urls'>$v</a>";
                                                 echo ' ';
                                         }
                                 ?>
                                 </span>
                         </h5>
-                         
-                         
-                         
                          <h6 class="post-footer">
                                 发布:圈圈 | 分类:<?php echo $vo['catename']; ?> | 评论:24 | 浏览:<?php echo $vo['click']; ?>  | <a href="<?php echo url('Article/index',array('artid'=>$vo['id'])); ?>">阅读全文 > </a>
                         </h6>

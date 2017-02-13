@@ -1,40 +1,69 @@
-{extend name="public/base" /}
-{block name="main"}
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:64:"F:\web\discuz\public/../application/index\view\search_index.html";i:1486981312;s:63:"F:\web\discuz\public/../application/index\view\public_base.html";i:1486897932;}*/ ?>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta http-equiv="Content-Language" content="zh-CN" />
+	<meta name="keywords" content="你我网,圈圈说,汉中,汉中圈圈,你我,如是观,心理,感情,youmew" />
+	<meta name="description" content="你我网，缘自圈圈说，记载着圈圈的生活过往，只为留住那份曾经的感动；圈圈，又名小尤，前半生执著于感情，命途多舛，故孑然一身。" />
+	<title>大生活 - 你我网 </title>
+	<link rel="stylesheet" rev="stylesheet" href="__PUBINDEX__/style/style.css" type="text/css" media="screen" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+	<script src="__PUBINDEX__/style/common.js" type="text/javascript"></script>
+	<script src="__PUBINDEX__/style/c_html_js_add.js" type="text/javascript"></script>
+	<script src="__PUBINDEX__/style/custom.js" type="text/javascript"></script>
+        
+</head>
+<body class="multi catalog">
+<div id="divAll">
+    <div id="divPage">
+	<div id="divMiddle">
+            
+		<div id="divTop">
+			<h1 id="BlogTitle"><a href="http://www.youmew.com/"><img src="__PUBINDEX__/images/LOGO.gif" alt="你我网" onMouseover="shake(this,'onmouseout')" /></a></h1>
+			
+		</div>
+		<div id="divNavBar">
+                    <ul>
+                    <?php if(is_array($nav) || $nav instanceof \think\Collection || $nav instanceof \think\Paginator): $i = 0; $__LIST__ = $nav;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                    <li><a href="
+                        <?php if($vo['type'] == 0): ?>
+                        <?php echo url('lst/index',array('cateid'=>$vo['id'])); else: ?>
+                        <?php echo url('guest/index',array('cateid'=>$vo['id'])); endif; ?>
+                        "><?php echo $vo['catename']; ?></a></li>
+                    <?php endforeach; endif; else: echo "" ;endif; ?>
+                    </ul>
+		</div>
+            
+                
+               
         <div id="divMain">
-            {volist name="artres" id="vo"}
-                <div class="post multi-post cate4 auth1">
-                        <h4 class="post-date">{$vo.time|date="Y年m月d日",###}</h4>
-                        <h2 class="post-title"><a href="{:url('Article/index',array('artid'=>$vo['id']))}">{$vo.title ?? "请添加内容"}</a></h2>
-                       
-                        <div class="post-body"><p>{$vo.content|html_trim= 80}</p></div>
-                         {if condition="$vo['pic'] neq ''"}	
-                        <p style="text-indent: 0em;"><a title="{$vo.title}" target="_self" href="{:url('Article/index',array('artid'=>$vo['id']))}"><img src="{$vo.pic}" title="你我网" alt="你我网"/></a></p>
-			 {/if}
-                        <h5 class="post-tags">Tags: <span class="tags">
-                                <?php
-                                       $arr  = explode(',', $vo['keywords']);    
-                                        foreach ($arr as $k => $v) {
-                                                $urls = url('index\tags',array('index/tags'=>$v));
-                                                echo "<a href='$urls'>$v</a>";
-                                                echo ' ';
-                                        }
-                                ?>
-                                </span>
-                        </h5>
-                         <h6 class="post-footer">
-                                发布:圈圈 | 分类:{$vo.catename} | 评论:24 | 浏览:{$vo.click}  | <a href="{:url('Article/index',array('artid'=>$vo['id']))}">阅读全文 > </a>
-                        </h6>
-                </div> 
-            {/volist}
-            <div class="post pagebar">{$page}</div>
-        </div>
-{/block}
- {block name="right"}
+            <div class="post single-post cate0 auth0">
+                    <h4 class="post-date"></h4>
+                    <h2 class="post-title">Search:<?php echo $keywords; ?></h2>
+                    <div class="post-body"> 
+                    <?php if($seares != ''): if(is_array($seares) || $seares instanceof \think\Collection || $seares instanceof \think\Paginator): $i = 0; $__LIST__ = $seares;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                    <p>
+                            <br/><font size="+0.5"><a target="_blank" href="<?php echo url('article/index',array('artid'=>$vo['id'])); ?>"><?php echo $vo['title']; ?></a></font>
+                            <br/><?php echo $vo['desc']; ?>
+                            <br/>
+                            <br/>
+                    </p> 
+                    <?php endforeach; endif; else: echo "" ;endif; else: ?>
+                    没有搜索结果！
+                    <?php endif; ?>
+            </div>
+                    <h6 class="post-footer"></h6>
+            </div>
+	</div>
+
+               
 		<div id="divSidebar">
                     <dl class="function" id="divSearchPanel">
                     <dt class="function_t">搜索</dt>
                     <dd class="function_c">
-                    <div><div style="padding:0.5em 0 0.5em 1em;"><form method="post" action="http://www.youmew.com/zb_system/cmd.asp?act=Search"><input type="text" name="edtSearch" id="edtSearch" size="12" /> <input type="submit" value="提交" name="btnPost" id="btnPost" /></form></div></div>
+                    <div><div style="padding:0.5em 0 0.5em 1em;"><form method="post" action="<?php echo url('search/index'); ?>"><input type="text" name="edtSearch" id="edtSearch" size="12" /> <input type="submit" value="提交" name="btnPost" id="btnPost" /></form></div></div>
                     </dd>
                     </dl><dl class="function" id="divTags">
                     <dt class="function_t">按标签浏览</dt>
@@ -59,4 +88,30 @@
                     </dl>
 
 		</div>
-{/block}	
+
+               
+		<div id="divBottom">
+                            <h3 id="BlogCopyRight"><script src="http://s20.cnzz.com/stat.php?id=681872&web_id=681872&show=pic" language="JavaScript"></script>　陕ICP备11002139号-1</h3>
+			<h4 id="BlogPowerBy">Powered By <a href="http://www.rainbowsoft.org/" title="RainbowSoft Studio Z-Blog" target="_blank">Z-Blog</a>　本站遵循<a rel="license" target="_blank" title="署名-非商业性使用-禁止演绎 3.0 中国大陆许可协议" href="http://creativecommons.org/licenses/by-nc-nd/3.0/cn/"> CC BY-NC-ND 3.0 CN协议 </a>。</h4>
+		</div>
+               
+                <div class="clear"></div>
+           </div>
+       <div class="clear"></div>
+    </div>
+    <div class="clear"></div>
+</div>
+
+<script language="JavaScript1.2">
+var typ=["marginTop","marginLeft"],rangeN=10,timeout=0; 
+function shake(o,end){ 
+var range=Math.floor(Math.random()*rangeN); 
+var typN=Math.floor(Math.random()*typ.length); 
+o["style"][typ[typN]]=""+range+"px"; 
+var shakeTimer=setTimeout(function(){shake(o,end)},timeout); 
+o[end]=function(){clearTimeout(shakeTimer)}; 
+} 
+  </script>
+
+</body>
+</html>

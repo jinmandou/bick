@@ -1,0 +1,52 @@
+{extend name="public/base" /}
+{block name="main"}
+	
+	<div id="divMain">
+        <div class="post single-post cate2 auth1">
+                <div class="post-nav">
+                {if condition="$prev eq ''"}
+                <a class="l" href="javascritp:void(0);">上一篇没有了</a>
+                {else/}
+                <a class="l" href="{:url('article/index',array('artid'=>$prev))}">上一篇 »</a>
+                {/if}
+                {if condition="$next eq ''"}
+                <a class="r" href="javascritp:void(0);">下一篇没有了</a>
+                {else/}
+                <a class="r" href="{:url('article/index',array('artid'=>$next))}">下一篇 »</a>
+                {/if}
+                </div>
+                <h4 class="post-date">{$arts.time|date="Y-m-d H:i:s",###}</h4>
+                <h2 class="post-title">{$arts.title}</h2>
+                <div class="post-body">
+                        {$arts.content}
+                </div>
+                <h5 class="post-tags">Tags: <span class="tags">
+                    <?php
+                            $arr=explode(',', $arts['keywords']);
+                            foreach ($arr as $k => $v) {
+                                    echo "<a href='http://127.0.0.1/youme/Public/index.php/index/Tags/index/tags/$v'>$v</a>";
+                                    echo ' ';
+                            }
+                    ?>
+                </span></h5>
+                <h6 class="post-footer">
+                        发布:圈圈 | 分类:{$arts.catename} | 评论:5 | 浏览:<span id="spn75">{$arts.click}</span>
+                        <br />
+                <!-- AD BEGIN -->
+                <br />
+                <div style="width:660px;" align="center">
+
+                </div>
+                <!-- AD END -->
+            </h6>
+        </div>
+        <ul class="msg mutuality">
+                <li class="tbname">相关文章:</li>
+                <li class="msgarticle">
+                {volist name="ralateres" id="vo"}
+                <p><a  href="{:url('article/index',array('artid'=>$vo.id))}">{$vo.title}</a>&nbsp;&nbsp;({$vo.time|date="Y-m-d H:i:s",###})</p>
+                {/volist}
+                </li>
+        </ul>
+    </div>
+{/block}

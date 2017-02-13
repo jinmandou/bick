@@ -1,0 +1,24 @@
+{extend name="public/base" /}
+{block name="main"}
+        <div id="divMain">
+            <div class="post single-post cate0 auth0">
+                    <h4 class="post-date"></h4>
+                    <h2 class="post-title">Search:{$keywords}</h2>
+                    <div class="post-body"> 
+                    {if condition="$seares neq ''"}
+                    {volist name="seares" id="vo"}
+                    <p>
+                            <br/><font size="+0.5"><a target="_blank" href="{:url('article/index',array('artid'=>$vo['id']))}">{$vo.title}</a></font>
+                            <br/>{$vo.desc}
+                            <br/>
+                            <br/>
+                    </p> 
+                    {/volist}
+                    {else /}
+                    没有搜索结果！
+                    {/if}
+            </div>
+                    <h6 class="post-footer"></h6>
+            </div>
+	</div>
+{/block}

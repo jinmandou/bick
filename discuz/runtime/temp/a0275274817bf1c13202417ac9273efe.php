@@ -1,13 +1,13 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:63:"F:\web\discuz\public/../application/index\view\index_index.html";i:1486987483;s:63:"F:\web\discuz\public/../application/index\view\public_base.html";i:1486987638;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:65:"F:\web\discuz\public/../application/index\view\article_index.html";i:1486987703;s:63:"F:\web\discuz\public/../application/index\view\public_base.html";i:1486989093;}*/ ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="zh-CN" lang="zh-CN">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 	<meta http-equiv="Content-Language" content="zh-CN" />
-	<meta name="keywords" content="你我网,圈圈说,汉中,汉中圈圈,你我,如是观,心理,感情,youmew" />
-	<meta name="description" content="你我网，缘自圈圈说，记载着圈圈的生活过往，只为留住那份曾经的感动；圈圈，又名小尤，前半生执著于感情，命途多舛，故孑然一身。" />
-	<title>大生活 - 你我网 </title>
+	<meta name="keywords" content="<?php echo isset($web['keywords']) ? $web['keywords'] :  '劲松电脑通讯'; ?>" />
+	<meta name="description" content="<?php echo isset($web['desc']) ? $web['desc'] :  '这里是介绍'; ?> " />
+	<title><?php echo isset($web['title']) ? $web['title'] :  '聚宝盆'; ?></title>
 	<link rel="stylesheet" rev="stylesheet" href="__PUBINDEX__/style/style.css" type="text/css" media="screen" />
     <link rel="shortcut icon" href="/favicon.ico" />
 	<script src="__PUBINDEX__/style/common.js" type="text/javascript"></script>
@@ -38,37 +38,54 @@
             
                 
                
-        <div id="divMain">
-            <?php if(is_array($artres) || $artres instanceof \think\Collection || $artres instanceof \think\Paginator): $i = 0; $__LIST__ = $artres;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
-                <div class="post multi-post cate4 auth1">
-                        <h4 class="post-date"><?php echo date("Y年m月d日",$vo['time']); ?></h4>
-                        <h2 class="post-title"><a href="<?php echo url('Article/index',array('artid'=>$vo['id'])); ?>"><?php echo isset($vo['title']) ? $vo['title'] :  "请添加内容"; ?></a></h2>
-                       
-                        <div class="post-body"><p><?php echo html_trim($vo['content'], 80); ?></p></div>
-                         <?php if($vo['pic'] != ''): ?>	
-                        <p style="text-indent: 0em;"><a title="<?php echo $vo['title']; ?>" target="_self" href="<?php echo url('Article/index',array('artid'=>$vo['id'])); ?>"><img src="<?php echo $vo['pic']; ?>" title="你我网" alt="你我网"/></a></p>
-			 <?php endif; ?>
-                        <h5 class="post-tags">Tags: <span class="tags">
-                                <?php
-                                       $arr  = explode(',', $vo['keywords']);
-                                        foreach ($arr as $k => $v) {
-                                                $urls = url('index/tags/index',array('tags'=>$v));
-                                                echo "<a href='$urls'>$v</a>";
-                                                echo ' ';
-                                        }
-                                ?>
-                                </span>
-                        </h5>
-                         
-                         
-                         
-                         <h6 class="post-footer">
-                                发布:圈圈 | 分类:<?php echo $catename; ?> | 评论:24 | 浏览:<?php echo $vo['click']; ?>  | <a href="<?php echo url('Article/index',array('artid'=>$vo['id'])); ?>">阅读全文 > </a>
-                        </h6>
-                </div> 
-            <?php endforeach; endif; else: echo "" ;endif; ?>
-            <div class="post pagebar"><?php echo $artres->render(); ?></div>
+	
+	<div id="divMain">
+        <div class="post single-post cate2 auth1">
+                <div class="post-nav">
+                <?php if($prev == ''): ?>
+                <a class="l" href="javascritp:void(0);">上一篇没有了</a>
+                <?php else: ?>
+                <a class="l" href="<?php echo url('article/index',array('artid'=>$prev)); ?>">上一篇 »</a>
+                <?php endif; if($next == ''): ?>
+                <a class="r" href="javascritp:void(0);">下一篇没有了</a>
+                <?php else: ?>
+                <a class="r" href="<?php echo url('article/index',array('artid'=>$next)); ?>">下一篇 »</a>
+                <?php endif; ?>
+                </div>
+                <h4 class="post-date"><?php echo date("Y-m-d H:i:s",$arts['time']); ?></h4>
+                <h2 class="post-title"><?php echo $arts['title']; ?></h2>
+                <div class="post-body">
+                        <?php echo $arts['content']; ?>
+                </div>
+                <h5 class="post-tags">Tags: <span class="tags">
+                    <?php
+                            $arr=explode(',', $arts['keywords']);
+                            foreach ($arr as $k => $v) {
+                                    echo "<a href='http://127.0.0.1/youme/Public/index.php/index/Tags/index/tags/$v'>$v</a>";
+                                    echo ' ';
+                            }
+                    ?>
+                </span></h5>
+                <h6 class="post-footer">
+                        发布:圈圈 | 分类:<?php echo $arts['catename']; ?> | 评论:5 | 浏览:<span id="spn75"><?php echo $arts['click']; ?></span>
+                        <br />
+                <!-- AD BEGIN -->
+                <br />
+                <div style="width:660px;" align="center">
+
+                </div>
+                <!-- AD END -->
+            </h6>
         </div>
+        <ul class="msg mutuality">
+                <li class="tbname">相关文章:</li>
+                <li class="msgarticle">
+                <?php if(is_array($ralateres) || $ralateres instanceof \think\Collection || $ralateres instanceof \think\Paginator): $i = 0; $__LIST__ = $ralateres;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$vo): $mod = ($i % 2 );++$i;?>
+                <p><a  href="<?php echo url('article/index',array('artid'=>$vo['id'])); ?>"><?php echo $vo['title']; ?></a>&nbsp;&nbsp;(<?php echo date("Y-m-d H:i:s",$vo['time']); ?>)</p>
+                <?php endforeach; endif; else: echo "" ;endif; ?>
+                </li>
+        </ul>
+    </div>
 
                
 		<div id="divSidebar">

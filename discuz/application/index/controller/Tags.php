@@ -1,4 +1,5 @@
 <?php
+//按标签分类页
 namespace app\index\controller;
 class Tags extends Base
 {

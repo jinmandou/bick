@@ -134,3 +134,17 @@ function html_trim($html, $max, $suffix='...')
     }
     return $html;
 }
+
+//二维数组去重复
+function arr_unique($arr2D){
+        foreach ($arr2D as $v) {
+            $v= join(',',$v);    //数组按“，”号合并成文本
+            $temp[]=$v;
+        }
+        $temp=array_unique($temp);       //一维数组去重复
+        foreach ($temp as $k => $v) {
+            $temp[$k]=explode(',', $v);
+        }
+        return $temp;
+
+    }

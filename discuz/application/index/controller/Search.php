@@ -1,8 +1,20 @@
 <?php
-
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+//搜索页
+namespace app\index\controller;
+class Search extends Base
+{
+    public function index()
+    {
+    	$keywords=input('edtSearch');
+    	if($keywords){
+    		$map['title']  = ['like','%'.$keywords.'%'];
+    		$seares=\think\Db::name('article')->where($map)->order('id desc')->paginate(2);
+    		$this->assign('seares',$seares);
+    		$this->assign('keywords',$keywords);
+    	}else{
+    		$this->assign('keywords','没有关键词');
+    		$this->assign('seares',null);
+    	}
+        return $this->fetch();
+    }
+}
