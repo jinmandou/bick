@@ -1,4 +1,7 @@
 <?php
+/***
+**管理员操作及权限操作
+ */
 namespace app\admin\controller;
 use app\admin\model\Admin as AdminModel;   //管理员模型
 use app\admin\controller\Common;

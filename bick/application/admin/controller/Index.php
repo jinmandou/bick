@@ -7,4 +7,9 @@ class Index extends Common
     {
         return view();
     }
+	
+	public function main()
+    {
+        return view();
+    }
 }
